@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <title>Bootstrap CSS használata</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <style>
+            .col {
+                height: 30px;
+                background-color: rgba(86,61,124,.15);
+                border: 1px inset rgba(86,61,124,.2);
+            }
+        </style>
+    </head>
+    <body>
+       <div>&nbsp;</div>
+        <div class="container">
+           <h3>Függőleges űrlap</h3>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    
+                    <form>
+                       <div class="form-group">
+                            <label class="col-sm-2 control-label">Cég</label>
+                            <div class="col-sm-10">
+                                <p style="padding: 0;" class="form-control-static">email@example.com</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email cím</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email cím" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="examplePassword">Jelszó</label>
+                            <input type="password" class="form-control" id="examplePassword" placeholder="jelszó" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon3">http://</span>
+                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                <span class="input-group-addon" id="basic-addon3">.com</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobSelect">Foglalkozás</label>
+                            <select class="form-control" name="job" id="jobSelect" aria-describedby="helpBlock">
+                                <option value="programmer">Programozó</option>
+                                <option value="manager">Cégvezető</option>
+                                <option value="typist">Titkárnő</option>
+                            </select>
+                            <span id="helpBlock" class="help-block">kérem válassza ki a szakmáját</span>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Feliratkozás hírlevélre
+                            </label>
+                        </div>
+                        <div class="clearfix">Neme</div>
+                        <div class="radio">
+                            <label>
+                                <input name="gender" type="radio"> Nő
+                            </label>
+                        </div> 
+                        <div class="radio">
+                            <label>
+                                <input name="gender" type="radio"> Férfi
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default">küldés</button>                
+                    </form>
+                    
+                    
+                </div>
+            </div>
+            
+            <h3>Inline űrlap</h3>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    
+                    <form class="form-inline">
+                       <div class="form-group">
+                            <label class="sr-only col-sm-2 control-label">Cég</label>
+                            <div class="col-sm-10">
+                                <p style="padding: 0;" class="form-control-static">email@example.com</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="exampleInputEmail1">Email cím</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email cím">
+                        </div>
+                        <button type="submit" class="btn btn-default">Confirm identity</button>                
+                    </form>
+                    
+                    
+                </div>
+            </div>
+            
+            <h3>Gombok fajtái</h3>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-search"></span> Default
+                    </button>
+                    <button class="btn btn-primary">
+                        <span class="glyphicon glyphicon-floppy-saved"></span> Primary
+                    </button>
+                    <button class="btn btn-info">
+                        <span class="glyphicon glyphicon-info-sign"></span> Info
+                    </button>
+                    <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok"></span> success
+                    </button>
+                    <button class="btn btn-warning">warning</button>
+                    <button class="btn btn-danger">danger</button>
+                    <button class="btn btn-link">link</button>
+                </div>
+            </div>
+            
+            <h1 style="font-size: 5em;"><span class="glyphicon glyphicon-qrcode"></span></h1>
+            
+            <h4>Gomb csoport</h4>
+            <div class="row">
+                <div class="col-xs-12 btn-group">
+                    <button class="btn btn-default">Default</button>
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-info">Info</button>
+                    <button class="btn btn-success">success</button>
+                    <button class="btn btn-warning">warning</button>
+                    <button class="btn btn-danger">danger</button>
+                </div>
+            </div>
+            
+            <h4>Block gomb</h4>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-info btn-block">link</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

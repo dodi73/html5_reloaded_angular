@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Audió és Videó lejátszó</title>
+	<meta name="Author" content=""/>
+	<style>
+        .row {
+            margin: 15px auto;
+        }
+        .my-button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <video id="bigVideo" controls>
+            <source src="http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4" type="video/mp4">
+            <source src="http://www.quirksmode.org/html5/videos/big_buck_bunny.webm" type="video/webm">
+            <source src="http://www.quirksmode.org/html5/videos/big_buck_bunny.ogv" type="video/ogg">
+        </video>
+        <audio src="http://hpr.dogphilosophy.net/test/mp3.mp3" controls></audio>
+    </div>
+    <div class="row control-div">
+        <button class="my-button play-btn">lejátszás</button>
+        <button class="my-button backward-btn"><< tekerés</button>
+        <button class="my-button forward-btn">tekerés >></button>
+        <button class="my-button fullscreen-btn">teljes képernyő</button>
+    </div>
+    
+    <script>
+        var video = document.querySelector('#bigVideo');
+        var controls = document.querySelector('.control-div')
+        
+        // Lejátszás.
+        document.querySelector('.play-btn')
+            .addEventListener('click', function(ev){
+                playPause();
+            });
+        video.addEventListener('click', function(){
+            playPause();
+        });
+        
+        function playPause() {
+            if (video.paused) {
+                video.play();
+                document.querySelector('.play-btn')
+                    .innerHTML = 'megállítás';
+            } else {
+                video.pause();
+                document.querySelector('.play-btn')
+                    .innerHTML = 'lejátszás';                    
+            }
+        }
+        
+        // Léptetés.
+        document.querySelector('.forward-btn')
+            .addEventListener('click', function(ev){
+                video.currentTime = video.currentTime + 15;           
+            });
+        document.querySelector('.backward-btn')
+            .addEventListener('click', function(ev){
+                video.currentTime = video.currentTime - 15;           
+            });
+        document.querySelector('.fullscreen-btn')
+            .addEventListener('click', function(ev){
+                video.style.position = 'absolute';
+                video.style.width = '100%';
+                controls.style.position = 'absolute';
+                var s = window.getComputedStyle(video);
+                console.debug( 'video height', s.height );
+                controls.style.top = (parseInt(s.height, 10)+15)+'px';
+            });
+        
+        
+        
+        
+    
+    </script>
+
+
+</body>
+</html>

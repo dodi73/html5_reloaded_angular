@@ -1,0 +1,14 @@
+{
+  "name": "html5-reloaded",
+  "description": "ItFactory HTML5 reloaded",
+  "main": "",
+  "authors": [
+    "cherryApp <j.cserko@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/cherryApp/html5-reloaded",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "fontawesome#^4.6.3"
+  }
+}

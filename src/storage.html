@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+	<meta name="Author" content=""/>
+</head>
+<body>
+    <form>
+       <label>Új localStorage változó neve:</label>
+       <input id="lsKey" type="text">
+       <br>
+       <label>Értéke</label>
+       <input id="lsValue" type="text">
+       <br>
+       <button id="saveToLs" type="button">mentés</button>
+    </form>
+    <div>
+        <button id="dump_ls">kiíratás</button>
+    </div>
+    <pre id="debug_p"></pre>
+
+    <script src="../build/js/localStorageClass.js"></script>
+    <script>
+        var lsHandler = new Ls('mystorage');
+        var lsKey = document.querySelector('#lsKey');
+        var lsValue = document.querySelector('#lsValue');
+        var debugP = document.querySelector('#debug_p');
+        document.querySelector('#saveToLs')
+            .addEventListener('click', function(){
+                lsHandler.setItem(lsKey.value, lsValue.value);
+                debugP.innerHTML = lsHandler.dump();
+            });
+        document.querySelector('#dump_ls')
+            .addEventListener('click', function(){
+                debugP.innerHTML = lsHandler.dump();
+            });
+    </script>
+</body>
+</html>

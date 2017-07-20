@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery az öreg róka</title>
+	<meta name="Author" content=""/>
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="clearfix">&nbsp;</div>
+    <div class="row">
+       <div class="col-xs-12">
+            <ul>
+                <li>Pisti</li>
+                <li>Rózsa</li>
+                <li>Flóra</li>
+                <li>Józsi</li>
+                <li>Botond</li>
+            </ul>
+            <ul>
+                <li>Pisti</li>
+                <li>Rózsa</li>
+                <li>Flóra</li>
+                <li>Józsi</li>
+                <li>Botond</li>
+            </ul>           
+       </div>
+    </div>
+
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Elemek kiválasztása.
+        var targetLi = $('body .row ul')
+                            .eq(0)
+                            .find('li')
+                            .eq(1);
+        targetLi
+            .css({
+                'color': 'blue',
+                'font-size': '2em',
+                'text-decoration': 'underline'
+            })
+            .slideUp( 50 )
+            .delay( 800 )
+            .fadeIn( 10000 );
+        
+        // Új js fájl hozzáadása.
+        $.getScript('js/jq.js');
+        
+        // Új elem hozzáadása egy meglévő elemhez.
+        targetLi.append('<p>új elem</p>');
+        
+        // Új elem hozzáadása a szülőhöz.
+        targetLi.parent().append('<li>Nevem Senki</li>');
+        targetLi.parent().prepend('<li>Nevem Senki</li>');
+        
+        
+        targetLi
+            .parents('body')
+            .append('<div>lábléc</div>');
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
