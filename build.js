@@ -1,123 +1,87 @@
-'use strict';
+"use strict";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+// Az angular főmodul létrehozása
+var webapp = angular.module("webapp", []);
 
-var _templateObject = _taggedTemplateLiteral(['Sziasztok, szép napunk van. \n                        Ma ', ' van.'], ['Sziasztok, szép napunk van. \n                        Ma ', ' van.']);
+// Body controllere:
+webapp.controller("bodyController", ['$scope', '$http', 'loginFactory', function ($scope, $http, loginFactory) {
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+    $scope.isLoggedIn = false;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// Osztály alapjául szolgáló függvény létrehozása.
-
-var dateClass = function () {
-    function dateClass(defaultDate) {
-        _classCallCheck(this, dateClass);
-
-        this.cDate = defaultDate ? defaultDate : new Date();
-    }
-
-    _createClass(dateClass, [{
-        key: 'goodMorning',
-        value: function goodMorning() {
-            var d = this.toMysql();
-            var template = String.raw(_templateObject, d);
-            console.log(template);
-        }
-    }, {
-        key: 'toMysql',
-        value: function toMysql() {
-            var parts = [];
-            parts.push(this.cDate.getFullYear());
-            parts.push(dateClass.toDoubleChars(this.cDate.getMonth() + 1));
-            parts.push(dateClass.toDoubleChars(this.cDate.getDate()));
-
-            return parts.join('-');
-        }
-    }], [{
-        key: 'toDoubleChars',
-        value: function toDoubleChars(num) {
-            if (num < 10 && num > -10) {
-                return '0' + num;
-            }
-            return '' + num;
-        }
-    }]);
-
-    return dateClass;
-}();
-
-;
-;var test = 1;; //window.addEventListener('resize', function( ev ) {
-//    console.debug( 'width', ev.target.innerWidth );
-//});
-//window.addEventListener('resize', function( ev ) {
-//    console.debug( 'height', ev.target.innerHeight );
-//});
-
-//var inputList = document.querySelectorAll( 'input[type=file]' );
-//console.log( 'inputList', inputList );
-//for ( var i = 0; i < inputList.length; i++ ) {
-//    inputList[i].addEventListener( 'change', function(ev) {
-//        console.log( ev.target.value );
-//    });
-//};// HTML5 szelektorok.
-// Egy elem kiválasztása.
-document.querySelector('form');
-document.querySelector('input[type=date]');
-
-// Gyorsabb megoldás.
-var regForm = document.querySelector('#testform');
-var dateInput = regForm.querySelector('input[type=date]');
-dateInput.value = '1988-10-22';
-
-// Elemek csoportjának kiválasztása.
-var inputs = regForm.querySelectorAll('input');
-//console.log( 'inputs', inputs );
-
-// Egyedi fájl input létrehozása.
-var fileInputs = document.querySelectorAll('.file-input-group');
-for (var i = 0; i < fileInputs.length; i++) {
-    // Beolvassuk a változó értékeket.
-    var name = fileInputs[i].getAttribute('data-name');
-    var label = document.createElement('label');
-
-    // Létrehozzuk a címkét.
-    label.setAttribute('for', name);
-    label.className = 'col-xs-6 col-xs-offset-2 control-label btn btn-primary file-input-label';
-    label.innerHTML = name;
-
-    // Létrehozzuk az input elemet.
-    var input = document.createElement('input');
-    input.setAttribute('id', name);
-    input.type = 'file';
-    input.className = 'hidden-file-input';
-
-    // Figyeljük az input értékének a változását.
-    input.addEventListener('change', function (ev) {
-        var currentLabel = document.querySelector('label[for=' + ev.target.id + ']');
-        var name = ev.target.value;
-        name = name.replace(/\\/g, '/').split('/').pop();
-        currentLabel.innerHTML = name;
-    });
-
-    // Hozzáadjuk az elemeket a divhez.
-    fileInputs[i].appendChild(input);
-    fileInputs[i].appendChild(label);
-}
-
-var evens = [1, 2, 3];
-var odds = evens.map(function (v) {
-    return v + 1;
-});
-console.log(odds);
-
-;var reloaded = angular.module("reloaded", []);
-reloaded.controller("hello", ['$scope', '$http', function ($scope, $http) {
     $scope.name = "Jeffrey";
 
+    // Az értékek a serverData objektum data változójában lesznek és
+    // belekerülnek a $scope.users tömbbe.   
     $scope.users = [];
-    $http.get('json/user.json').then(function (serverData) {
-        $scope.users = serverData.data;
-    });
+
+    loginFactory.checkLogin();
+}]);; // Login kezelése:
+webapp.factory('loginFactory', ['$q', '$http', function ($q, $http) {
+    // Objektummal tér vissza, amiben felsoroljuk, hogy mit csináljon ez a factory.
+    // Back-end-et most nem írunk, front-end-be opldjuk meg, html tanfolyam.
+    // Ez így nem biztonságos (a javascript könnyen manipulálható), csak szimuláljuk a // back-end-et, élőben soha így.
+    return {
+        // A checkLogin elem létrehozása, ami egy függvény, és ami megkapja a loginData
+        // objektumot (felhasználó, jelszó).
+        checkLogin: function checkLogin(loginData) {
+            var deferred = $q.defer();
+
+            // Lekérjük a felhasználókat:
+            // A then()-nek az első  
+            this.getUsers().then(function (users) {
+
+                // Megkeressük az adott felhasználót.
+                var loggedIn = false;
+                for (var k in users) {
+                    if (users[k].email === loginData.email && users[k].pass === loginData.pass) {
+                        loggedIn = true;
+                    }
+                }
+                deferred.resolve(loggedIn);
+            }, function (err) {
+                alert('Hiba a szerver kapcsolatban!');
+                deferred.resolve(loggedIn);
+            });
+
+            // A promise nem függvény, hanem objektum.
+            return deferred.promise;
+        },
+        getUsers: function getUsers() {
+            //A $q-val valósítjuk meg az asszinkron működést, ezzel viszgáljuk, hogy
+            // megfelelő adattal tért vissza, vagy hibaüzenettel. Végül visszaadjuk return-al vagy az adatokat vagy a hibát.   
+            var deferred = $q.defer();
+            $http.get('json/user.json').then(function (serverData) {
+                deferred.resolve(serverData.data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        }
+    };
+}]);; // Body controllere:
+webapp.controller("bodyController", ['$scope', '$http', 'loginFactory', function ($scope, $http, loginFactory) {
+
+    $scope.isLoggedIn = false;
+
+    $scope.name = "Jeffrey";
+
+    // Az értékek a serverData objektum data változójában lesznek és
+    // belekerülnek a $scope.users tömbbe.   
+    $scope.users = [];
+
+    // Bejelentkezés.
+    $scope.doLogin = function () {
+        if (!$scope.loginData) {
+            alert('Kérjük töltse ki a mezőket!');
+            return;
+        }
+        if (!$scope.loginData.email || !$scope.loginData.pass) {
+            alert('Kérjük töltse ki a mezőket!');
+            return;
+        }
+
+        loginFactory.checkLogin($scope.loginData).then(function (loggedIn) {
+            $scope.isLoggedIn = loggedIn;
+        });
+    };
 }]);

@@ -1,21 +1,4 @@
-// Az angular főmodul létrehozása
-var webapp = angular.module( "webapp", [] );
-
-// Body controllere:
-webapp.controller( "bodyController", ['$scope', '$http', 'loginFactory', 
-    function($scope, $http, loginFactory){
-        
-    $scope.isLoggedIn = false;
-        
-    $scope.name = "Jeffrey";
-    
-    // Az értékek a serverData objektum data változójában lesznek és
-    // belekerülnek a $scope.users tömbbe.   
-    $scope.users = [];
-        
-    loginFactory.checkLogin()
-        
-}]);;// Login kezelése:
+// Login kezelése:
 webapp.factory('loginFactory', ['$q', '$http', function($q, $http) {
     // Objektummal tér vissza, amiben felsoroljuk, hogy mit csináljon ez a factory.
     // Back-end-et most nem írunk, front-end-be opldjuk meg, html tanfolyam.
@@ -60,32 +43,4 @@ webapp.factory('loginFactory', ['$q', '$http', function($q, $http) {
         return deferred.promise;           
         }
     };
-}]);;// Body controllere:
-webapp.controller( "bodyController", ['$scope', '$http', 'loginFactory', 
-    function($scope, $http, loginFactory){
-        
-    $scope.isLoggedIn = false;
-        
-    $scope.name = "Jeffrey";
-    
-    // Az értékek a serverData objektum data változójában lesznek és
-    // belekerülnek a $scope.users tömbbe.   
-    $scope.users = [];
-   
-    // Bejelentkezés.
-    $scope.doLogin = function() {
-        if ( !$scope.loginData) {
-            alert('Kérjük töltse ki a mezőket!');
-            return;
-        }
-        if ( !$scope.loginData.email || !$scope.loginData.pass ) {
-            alert('Kérjük töltse ki a mezőket!');
-            return;
-        }
-        
-        loginFactory.checkLogin($scope.loginData)
-            .then(function(loggedIn){
-                $scope.isLoggedIn = loggedIn;
-        });
-    }
 }]);

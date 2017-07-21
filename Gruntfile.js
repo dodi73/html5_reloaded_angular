@@ -79,12 +79,16 @@ module.exports = grunt => {
         },
         dist: {
             src: [
-                'src/js/class/*.js',
-                'src/js/*.js'
+                'src/js/*.js',
+                'src/js/factory/*.js',                
+                'src/js/controller/*.js'
             ],
             dest: 'built.js',
         }
     },
+      
+    clean: ['build/'],  
+      
     watch: {
       scripts: {
         files: ['src/js/**/*.js', 'src/css/**/*.css', 'src/**/*.html'],
@@ -113,9 +117,9 @@ module.exports = grunt => {
 //  grunt.loadNpmTasks('babel');
 
   // Default task(s).
-  grunt.registerTask('dev', ['concat', 'babel:main', 'uglify', 'cssmin', 'copy']);
+  grunt.registerTask('dev', ['clean', 'concat', 'babel:main', 'uglify', 'cssmin', 'copy']);
   grunt.registerTask('local', ['babel:local']);
-  grunt.registerTask('default', ['watch:babel']);
+  grunt.registerTask('default', ['watch:scripts']);
  
 	
 };

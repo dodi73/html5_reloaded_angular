@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<html data-ng-app="reloaded">
+<html data-ng-app="webapp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Starter Template for Bootstrap 3.3.6</title>
+    <title>Starter Template for Bootstrap 3.3.7</title>
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" href="css/html5-reloaded.min.css">
-    <style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>
-
-    <!--[if IE]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
-<body  data-ng-controller="hello">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<body data-ng-controller="bodyController">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-show="isLoggedIn">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -33,39 +27,41 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li>
-                        <a href="#contact">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
-                            Contact
-                        </a>
-                    </li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div><!--.nav-collapse -->
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" data-ng-show="isLoggedIn">
         <div class="starter-template">
-            <h1>Hello, 
-                <span data-ng-bind="name"></span>!
-            </h1>
-            <p class="lead">Now you can start your own project with <a target="_blank" href="http://getbootstrap.com/">Bootstrap 3.3.6</a>. This plugin is a fork from <a href="https://github.com/le717/brackets-html-skeleton#readme">HTML Skeleton</a>.</p>
+            <h1>Felhasználó kezelése!</h1>
+            <p class="lead">Ezt a artalmat csak bejelentkezett felhasználó érheti el.</p>
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-xs-4 col-xs-offset-4">
-            <ul>
-                <li data-ng-repeat="user in users">
-                    {{ user.name }}, {{ user.job }}, {{ user.age }}
-                </li>
-            </ul>
+    <div class="row" data-ng-show="!isLoggedIn">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="panel panel-primary">
+             <div class="panel-heading">Bejelentkezés</div>
+              <div class="panel-body">
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input data-ng-model="loginData.email" type="email" class="form-control">
+                    <label for="userPassword">Password</label>
+                    <input data-ng-model="loginData.pass" type="password" class="form-control">
+                </div>
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                      <button class="btn btn-primary pull-right" data-ng-click="doLogin()">Ok</button>
+                    </div>
+                </div>
+              </div>
+            </div>
         </div>
     </div>
-    
-    <footer>
-        <p>&copy; j.cserko 2016</p>
-    </footer>
 
     <script src="js/html5-reloaded.min.js"></script>
 </body>

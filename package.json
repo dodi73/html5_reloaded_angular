@@ -1,8 +1,8 @@
 {
-  "description": "ItFactory HTML5 reloaded",
+  "description": "ItFactory HTML5 reloaded Angular",
   "name": "html5-reloaded",
   "version": "1.0.0",
-  "repository": "https://github.com/cherryApp/html5-reloaded.git",
+  "repository": "https://github.com/dodi73/html5_reloaded_angular.git",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.5",
@@ -11,6 +11,7 @@
     "bootstrap": "*",
     "grunt": "^1.0.1",
     "grunt-babel": "^6.0.0",
+    "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^1.0.1",
