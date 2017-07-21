@@ -1,6 +1,6 @@
 // Body controllere:
-webapp.controller( "bodyController", ['$scope', '$http', 'loginFactory', 
-    function($scope, $http, loginFactory){
+webapp.controller( "bodyController", ['$scope', '$http', 'userFactory', 
+    function($scope, $http, userFactory){
         
     $scope.isLoggedIn = false;
         
@@ -21,7 +21,7 @@ webapp.controller( "bodyController", ['$scope', '$http', 'loginFactory',
             return;
         }
         
-        loginFactory.checkLogin($scope.loginData)
+        userFactory.checkLogin($scope.loginData)
             .then(function(loggedIn){
                 $scope.isLoggedIn = loggedIn;
         });

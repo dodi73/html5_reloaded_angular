@@ -1,5 +1,5 @@
 // Login kezelése:
-webapp.factory('loginFactory', ['$q', '$http', function($q, $http) {
+webapp.factory('userFactory', ['$q', '$http', function($q, $http) {
     // Objektummal tér vissza, amiben felsoroljuk, hogy mit csináljon ez a factory.
     // Back-end-et most nem írunk, front-end-be opldjuk meg, html tanfolyam.
     // Ez így nem biztonságos (a javascript könnyen manipulálható), csak szimuláljuk a // back-end-et, élőben soha így.
@@ -9,7 +9,7 @@ webapp.factory('loginFactory', ['$q', '$http', function($q, $http) {
         checkLogin: function(loginData) {
             var deferred = $q.defer();
             
-            // Lekérjük a felhasználókat:
+            // Lekérjük a felhasználókat (Ennek a kódrészletnek a szerveren a //helye):
             // A then()-nek az első  
             this.getUsers().then( function(users) {
                    
@@ -26,6 +26,7 @@ webapp.factory('loginFactory', ['$q', '$http', function($q, $http) {
                 alert('Hiba a szerver kapcsolatban!');
                 deferred.resolve(loggedIn);                
             });
+            
             
             // A promise nem függvény, hanem objektum.
             return deferred.promise;

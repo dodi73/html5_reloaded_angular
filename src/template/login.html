@@ -1,0 +1,20 @@
+       <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="panel panel-primary">
+             <div class="panel-heading">Bejelentkezés</div>
+              <div class="panel-body">
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input data-ng-model="loginData.email" type="email" class="form-control">
+                    <label for="userPassword">Password</label>
+                    <input data-ng-model="loginData.pass" type="password" class="form-control">
+                </div>
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                      <button class="btn btn-primary pull-right" data-ng-click="doLogin()">Ok</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>

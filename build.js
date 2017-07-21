@@ -16,7 +16,7 @@ webapp.controller("bodyController", ['$scope', '$http', 'loginFactory', function
 
     loginFactory.checkLogin();
 }]);; // Login kezelése:
-webapp.factory('loginFactory', ['$q', '$http', function ($q, $http) {
+webapp.factory('userFactory', ['$q', '$http', function ($q, $http) {
     // Objektummal tér vissza, amiben felsoroljuk, hogy mit csináljon ez a factory.
     // Back-end-et most nem írunk, front-end-be opldjuk meg, html tanfolyam.
     // Ez így nem biztonságos (a javascript könnyen manipulálható), csak szimuláljuk a // back-end-et, élőben soha így.
@@ -26,7 +26,7 @@ webapp.factory('loginFactory', ['$q', '$http', function ($q, $http) {
         checkLogin: function checkLogin(loginData) {
             var deferred = $q.defer();
 
-            // Lekérjük a felhasználókat:
+            // Lekérjük a felhasználókat (Ennek a kódrészletnek a szerveren a //helye):
             // A then()-nek az első  
             this.getUsers().then(function (users) {
 
@@ -59,7 +59,7 @@ webapp.factory('loginFactory', ['$q', '$http', function ($q, $http) {
         }
     };
 }]);; // Body controllere:
-webapp.controller("bodyController", ['$scope', '$http', 'loginFactory', function ($scope, $http, loginFactory) {
+webapp.controller("bodyController", ['$scope', '$http', 'userFactory', function ($scope, $http, userFactory) {
 
     $scope.isLoggedIn = false;
 
@@ -80,7 +80,7 @@ webapp.controller("bodyController", ['$scope', '$http', 'loginFactory', function
             return;
         }
 
-        loginFactory.checkLogin($scope.loginData).then(function (loggedIn) {
+        userFactory.checkLogin($scope.loginData).then(function (loggedIn) {
             $scope.isLoggedIn = loggedIn;
         });
     };
